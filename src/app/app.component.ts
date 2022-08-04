@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ErrorMsgComponent } from './shared/error-msg/error-msg.component';
 
 @Component({
@@ -6,15 +6,14 @@ import { ErrorMsgComponent } from './shared/error-msg/error-msg.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit {
   
-
   title = 'CRUD de lembretes com o Angular';
-  @ViewChild(ErrorMsgComponent) errorMsgComponent!: ErrorMsgComponent;
+  @ViewChild(ErrorMsgComponent, {static: true}) errorMsgComponent!: ErrorMsgComponent;
   
-  
-  ngAfterViewInit() {
-    setTimeout(()=> this.errorMsgComponent.setError("Mensagem de erro!"));
+  ngOnInit(): void {
+    this.errorMsgComponent.setError("Mensagem de erro!")
   }
+
     
 }
